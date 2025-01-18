@@ -17,45 +17,59 @@ const App = () => {
   };
 
   const handleDelete = (index) => {
-    const updatedProducts = products.filter((_, i) => i !== index);
-    setProducts(updatedProducts);
+    const confirmDelete = window.confirm('คุณต้องการลบสินค้านี้หรือไม่?');
+    if (confirmDelete) {
+      const updatedProducts = products.filter((_, i) => i !== index);
+      setProducts(updatedProducts);
+    }
   };
+  
 
   return (
-    <div style={{ padding: '50px', fontFamily: 'Arial, sans-serif' }}>
-      <h2>เพิ่มข้อมูลสินค้า</h2>
-      <div style={{ marginBottom: '50px' }}>
-        <input
-          type="text"
-          name="name"
-          placeholder="ชื่อสินค้า"
-          value={form.name}
-          onChange={handleChange}
-          style={{ marginRight: '50px', padding: '20px' }}
-        /> 
-        <input
-          type="text"
-          name="price"
-          placeholder="ราคา"
-          value={form.price}
-          onChange={handleChange}
-          style={{ marginRight: '50px', padding: '20px' }}
-        />
+    <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
+    <center><h1 style={{ border: '3px solid #000000', borderRadius: '5px', backgroundColor: '#009999', display: 'inline-block', padding: '10px 800px' }}>เพิ่มข้อมูลสินค้า</h1></center>
+    <br />
+    <div style={{ marginBottom: '20px', border: '2px solid #000000', borderRadius: '10px', padding: '15px' }}>
+    <div style={{ marginBottom: '10px' }}>
+          <label htmlFor="name" style={{ marginRight: '10px' }}>ชื่อสินค้า:</label>
+          <input
+            id="name"
+            type="text"
+            name="name"
+            placeholder="ชื่อสินค้า"
+            value={form.name}
+            onChange={handleChange}
+            style={{ padding: '5px', width: 'calc(100% - 120px)' }}
+          />
+        </div>
+        <div style={{ marginBottom: '10px' }}>
+          <label htmlFor="price" style={{ marginRight: '10px' }}>ราคา:</label>
+          <input
+            id="price"
+            type="text"
+            name="price"
+            placeholder="ราคา"
+            value={form.price}
+            onChange={handleChange}
+            style={{ padding: '5px', width: 'calc(100% - 120px)' }}
+          />
+        </div>
+        <label htmlFor="price" style={{ marginRight: '10px' }}>รูปภาพ: </label>
         <input
           type="text"
           name="image"
           placeholder="รูปภาพ (URL)"
           value={form.image}
           onChange={handleChange}
-          style={{ marginRight: '50px', padding: '20px' }}
+          style={{ marginRight: '10px', padding: '5px' }}
         />
-        <button onClick={handleAddProduct} style={{ padding: '5px 10px',backgroundColor: 'green',color:'white', marginRight: '10px' }}>บันทึก</button>
-        <button onClick={() => setForm({ name: '', price: '', image: '' })} style={{ padding: '5px 10px',backgroundColor: 'red',color: 'white' }}>เคลียร์</button>
+        <button className="bg-green-300 m-2 p-2" onClick={handleAddProduct} style={{ padding: '5px 10px', marginRight: '5px' }}>บันทึก</button>
+        <button className="bg-red-300 m-2 p-2" onClick={() => setForm({ name: '', price: '', image: '' })} style={{ padding: '5px 10px' }}>เคลียร์</button>
       </div>
 
       <table border="1" style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'center' }}>
         <thead>
-          <tr style={{ backgroundColor: '#f2f2f2' }}>
+          <tr style={{ backgroundColor: '#6699FF' }}>
             <th>No.</th>
             <th>ชื่อสินค้า</th>
             <th>ราคา</th>
